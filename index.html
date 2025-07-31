@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Library</title>
-    <script src="javascript.js"></script>
+    <script src="javascript.js" defer></script>
 </head>
 <body>
     <h1>Library Project</h1>
-    <button onclick="addBook()">this is a test button</button>
+
+    <form action="" id="bookInfo">
+        <label for="title">title: </label>
+        <input type="text" name="title" id="title">
+        <label for="author">author: </label>
+        <input type="text" name="author" id="author">
+        <label for="pages">pages: </label>
+        <input type="number" name="pages" id="pages">
+
+        <input type="radio" id="yes" name="read" value="yes">
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" name="read" value="no">
+        <label for="no">No</label>
+
+        <input type="submit" value="submit">
+
+    </form>
     <div id="output">
 
     </div>
 </body>
+
 </html>
