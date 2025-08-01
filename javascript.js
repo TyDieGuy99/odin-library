@@ -17,7 +17,11 @@ function Book(title, author, pages, read, id) {
 }
 
 Book.prototype.readStatus = function() {
-    console.log('this is the prototype!');
+    if (this.read == 'yes') {
+        this.read = 'no';
+    } else {
+        this.read = 'yes';
+    }
 }
 
 function addBook() {
@@ -49,6 +53,7 @@ function updateDisplay() {
         const buttonRead = document.createElement('button');
 
         p.textContent = Object.values(obj);
+
         buttonDelete.textContent = 'delete the book';
         buttonDelete.onclick = function() {
             for (let i = 0; i < myLibrary.length; i++) {
@@ -64,13 +69,8 @@ function updateDisplay() {
         buttonRead.onclick = function() {
             for (let i = 0; i < myLibrary.length; i++) {
                 if (myLibrary[i].id == bookContainer.id) {
-                    if (myLibrary[i].read == 'yes') {
-                        myLibrary[i].read = 'no';
-                    } else {
-                        myLibrary[i].read = 'yes';
-                    }
+                    myLibrary[i].readStatus();
                     bookContainer.firstChild.textContent = Object.values(obj);
-                    return;
                 }
             }
         };
