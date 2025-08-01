@@ -16,16 +16,9 @@ function Book(title, author, pages, read, id) {
     this.id = id
 }
 
-// const book1 = new Book('Harry Potter', 'J.K. Rowling', 495, true, crypto.randomUUID());
-// const book2 = new Book('Dune', 'Some Guy', 1295, false, crypto.randomUUID());
-// const book3 = new Book('Green Eggs and Ham', 'Doctor Seus', 24, true, crypto.randomUUID());
-// const book4 = new Book('Goosebumps', 'R.L. Stein', 89, true, crypto.randomUUID());
-// const book5 = new Book('Game of Thrones', 'Forgot Name', 854, false, crypto.randomUUID());
-// myLibrary.push(book1);
-// myLibrary.push(book2);
-// myLibrary.push(book3);
-// myLibrary.push(book4);
-// myLibrary.push(book5);
+Book.prototype.readStatus = function() {
+    console.log('this is the prototype!');
+}
 
 function addBook() {
     console.log("button has been clicked");
@@ -67,10 +60,19 @@ function updateDisplay() {
             } 
         };
 
-
         buttonRead.textContent = 'Read Status'
         buttonRead.onclick = function() {
-            console.log('this has worked now!');
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].id == bookContainer.id) {
+                    if (myLibrary[i].read == 'yes') {
+                        myLibrary[i].read = 'no';
+                    } else {
+                        myLibrary[i].read = 'yes';
+                    }
+                    bookContainer.firstChild.textContent = Object.values(obj);
+                    return;
+                }
+            }
         };
 
         bookContainer.appendChild(p);
