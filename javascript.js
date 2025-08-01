@@ -47,12 +47,37 @@ function updateDisplay() {
     outputDiv.innerHTML = '';
 
     myLibrary.forEach(obj => {
+        const bookContainer = document.createElement('div');
+        bookContainer.id = obj.id;
+        outputDiv.appendChild(bookContainer);
+
         const p = document.createElement('p');
-        const button = document.createElement('button');
+        const buttonDelete = document.createElement('button');
+        const buttonRead = document.createElement('button');
+
         p.textContent = Object.values(obj);
-        button.textContent = 'delete the book';
-        outputDiv.appendChild(p);
-        outputDiv.appendChild(button);
+        buttonDelete.textContent = 'delete the book';
+        buttonDelete.onclick = function() {
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].id == bookContainer.id) {
+                    myLibrary.splice(i, 1);
+                    bookContainer.remove();
+                    return;
+                }
+            } 
+        };
+
+
+        buttonRead.textContent = 'Read Status'
+        buttonRead.onclick = function() {
+            console.log('this has worked now!');
+        };
+
+        bookContainer.appendChild(p);
+        bookContainer.appendChild(buttonDelete);
+        bookContainer.appendChild(buttonRead);
     })
 }
+
+
 
