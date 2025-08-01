@@ -48,11 +48,18 @@ function updateDisplay() {
         bookContainer.id = obj.id;
         outputDiv.appendChild(bookContainer);
 
-        const p = document.createElement('p');
+        const title = document.createElement('p');
+        const author = document.createElement('p');
+        const pages = document.createElement('p');
+        const read = document.createElement('p');
         const buttonDelete = document.createElement('button');
         const buttonRead = document.createElement('button');
 
-        p.textContent = Object.values(obj);
+        title.textContent = obj.title;
+        author.textContent = obj.author;
+        pages.textContent = obj.pages;
+        read.textContent = obj.read;
+
 
         buttonDelete.textContent = 'delete the book';
         buttonDelete.onclick = function() {
@@ -70,12 +77,16 @@ function updateDisplay() {
             for (let i = 0; i < myLibrary.length; i++) {
                 if (myLibrary[i].id == bookContainer.id) {
                     myLibrary[i].readStatus();
-                    bookContainer.firstChild.textContent = Object.values(obj);
+                    const count = bookContainer.children;
+                    count[3].textContent = myLibrary[i].read;
                 }
             }
         };
 
-        bookContainer.appendChild(p);
+        bookContainer.appendChild(title);
+        bookContainer.appendChild(author);
+        bookContainer.appendChild(pages);
+        bookContainer.appendChild(read);
         bookContainer.appendChild(buttonDelete);
         bookContainer.appendChild(buttonRead);
     })
