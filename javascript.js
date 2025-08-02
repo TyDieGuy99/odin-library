@@ -46,6 +46,7 @@ function updateDisplay() {
     myLibrary.forEach(obj => {
         const bookContainer = document.createElement('div');
         bookContainer.id = obj.id;
+        bookContainer.classList.add('book');
         outputDiv.appendChild(bookContainer);
 
         const title = document.createElement('p');
