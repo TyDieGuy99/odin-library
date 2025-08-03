@@ -5,6 +5,8 @@ document.getElementById('bookInfo').addEventListener('submit', function(event) {
     updateDisplay();
     document.getElementById('bookInfo').reset();
 });
+const addBtn = document.getElementById('showDialog');
+const dialog = document.getElementById("dialog");
 
 const myLibrary = [];
 
@@ -24,6 +26,11 @@ Book.prototype.readStatus = function() {
     }
 }
 
+addBtn.addEventListener('click', () => {
+    dialog.showModal();
+    console.log('help');
+});
+
 function addBook() {
     console.log("button has been clicked");
     title = document.getElementById('title').value;
@@ -37,6 +44,7 @@ function addBook() {
     id = crypto.randomUUID();
     const book = new Book(title, author, pages, read, id);
     myLibrary.push(book);
+    dialog.close();
 }
 
 function updateDisplay() {
@@ -92,6 +100,5 @@ function updateDisplay() {
         bookContainer.appendChild(buttonRead);
     })
 }
-
 
 
