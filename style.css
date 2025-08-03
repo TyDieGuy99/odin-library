@@ -1,15 +1,40 @@
+:root {
+    --bg-primary: #0d1117;
+
+
+    --nav-primary: #2d1b69;
+    --nav-border: #4c1d95;
+    --label-text: #e6eeff;
+    --input-background: #1e1b4b;
+    --input-border: #4c1d95;
+
+
+    --book--primary: #1e1b4b;
+    --accent: #c0c0c0;
+    --button: #8b5cf6;
+
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     line-height: 1.4;
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
 
-h1 {
+body {
+    background-color: var(--bg-primary);
+    color: var(--accent);
+}
+
+#header {
+    background-color: var(--nav-primary);
+    border-color: var(--nav-border);
+    padding: 2em;
     display: flex;
-    justify-content: center;
-    margin: 15px;
+    justify-content: flex-start;
 }
 
 form {
@@ -19,19 +44,30 @@ form {
     gap: 15px;
 }
 
+input {
+    border-color: var(--input-border);
+    background-color: var(--input-background);
+    color: var(--label-text);
+}
+
+button {
+    background-color: var(--button);
+    color: var(--accent);
+}
+
 #output {
     margin: 15px;
-    gap: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
 }
 
 .book {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     padding: 5px;
-    min-width: 20%;
+    background-color: var(--book--primary);
 }
