@@ -1,12 +1,6 @@
-document.getElementById('bookInfo').addEventListener('submit', function(event) {
-    event.preventDefault();
-    addBook();
-    console.log(myLibrary.length);
-    updateDisplay();
-    document.getElementById('bookInfo').reset();
-});
 const addBtn = document.getElementById('showDialog');
 const dialog = document.getElementById("dialog");
+const submit = document.getElementById('submit');
 
 const myLibrary = [];
 
@@ -31,12 +25,19 @@ addBtn.addEventListener('click', () => {
     console.log('help');
 });
 
+submit.addEventListener('click', () => {
+    addBook();
+    console.log(myLibrary.length);
+    updateDisplay();
+    document.getElementById('bookInfo').reset();
+});
+
 function addBook() {
     console.log("button has been clicked");
     title = document.getElementById('title').value;
     author = document.getElementById('author').value;
     pages = document.getElementById('pages').value;
-    if (document.getElementById('yes').checked) {
+    if (document.getElementById('readStatus').checked) {
         read = 'yes';
     } else {
         read = 'no';
@@ -58,19 +59,25 @@ function updateDisplay() {
         outputDiv.appendChild(bookContainer);
 
         const title = document.createElement('p');
+        title.className = 'title';
         const author = document.createElement('p');
+        author.className = 'author';
         const pages = document.createElement('p');
+        pages.className = 'pages';
         const read = document.createElement('p');
+        read.className = 'read';
         const buttonDelete = document.createElement('button');
+        buttonDelete.className = 'dialogBtn';
         const buttonRead = document.createElement('button');
+        buttonRead.className = 'dialogBtn';
 
         title.textContent = obj.title;
-        author.textContent = obj.author;
-        pages.textContent = obj.pages;
+        author.textContent = 'By: ' + obj.author;
+        pages.textContent = obj.pages + ' pages';
         read.textContent = obj.read;
 
 
-        buttonDelete.textContent = 'delete the book';
+        buttonDelete.textContent = 'Remove Book';
         buttonDelete.onclick = function() {
             for (let i = 0; i < myLibrary.length; i++) {
                 if (myLibrary[i].id == bookContainer.id) {
