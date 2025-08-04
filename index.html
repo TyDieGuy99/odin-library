@@ -11,24 +11,27 @@
     <div id="header">
         <h1>Library Project</h1>
         <dialog id="dialog">
-            <form action="" id="bookInfo">
-                <label for="title">title: </label>
-                <input type="text" name="title" id="title">
-                <label for="author">author: </label>
-                <input type="text" name="author" id="author">
-                <label for="pages">pages: </label>
-                <input type="number" name="pages" id="pages">
-        
-                <input type="radio" id="yes" name="read" value="yes">
-                <label for="yes">Yes</label>
-                <input type="radio" id="no" name="read" value="no">
-                <label for="no">No</label>
-        
-                <input type="submit" value="submit">
-        
+            <form method="dialog" id="bookInfo">
+                <h2>Add a book:</h2>
+                <div></div>
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" id="title">
+                    <label for="author">Author: </label>
+                    <input type="text" name="author" id="author">
+                    <label for="pages">Pages: </label>
+                    <input type="number" name="pages" id="pages">
+                    <div class="checkboxGroup">
+                        <input type="checkbox" name="readStatus" id="readStatus">
+                        <label for="readStatus">Mark as already read?</label>
+                    </div>
+                    <div>
+
+                    </div>
+                <input type="submit" value="Submit" class="dialogBtn" id="submit">
+                <button class="dialogBtn" id="cancelBtn">Cancel</button>
             </form>
         </dialog>
-        <button id="showDialog">Add Book</button>
+        <button class="dialogBtn" id="showDialog">Add Book</button>
     </div>
     
     <div id="output">
