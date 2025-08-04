@@ -12,6 +12,7 @@
     --book--primary: #1e1b4b;
     --accent: #c0c0c0;
     --button: #8b5cf6;
+    --button-hover: #7c3aed;
 
 }
 
@@ -35,28 +36,114 @@ body {
     padding: 2em;
     display: flex;
     justify-content: flex-start;
+    gap: 5em;
 }
 
+/*this is all for the dialog pop up */
+
+
+
 dialog {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 50%);
-    height: 3em;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    padding: 3em;
+
+    background-color: var(--book--primary);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-shadow: 0px 8px 32px rgba(0,0,0,0.6);
 }
 
 form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+    color: var(--accent);
+    font-size: 1.5rem;
+    gap: 1em;
+}
+
+label {
+    display: block;
+    color: var(--label-text);
+    font-weight: 600;
+    font-size: 1.15rem;
 }
 
 input {
-    border-color: var(--input-border);
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--input-border);
     background-color: var(--input-background);
     color: var(--label-text);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-sizing: border-box;
 }
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.2);
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.checkboxGroup>input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.checkboxGroup>label {
+    color: var(--label-text);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.15rem;
+}
+
+.dialogBtn {
+    background-color: var(--button);
+    color: var(--accent);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dialogBtn:hover {
+    background-color: var(--button-hover);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+#cancelBtn {
+    background-color: transparent;
+    border: 1px solid var(--input-border);
+    font-size: 1rem;
+}
+
+#cancelBtn:hover {
+    background-color: rgba(192, 192, 192, 0.1);
+    border-color: var(--accent);
+}
+
+/* end of dialog */
 
 button {
     background-color: var(--button);
@@ -78,4 +165,18 @@ button {
     gap: 15px;
     padding: 5px;
     background-color: var(--book--primary);
+}
+
+p {
+    color: var(--label-text);
+}
+
+.title {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.author {
+    font-weight: 500;
+    font-size: 1.25rem;
 }
