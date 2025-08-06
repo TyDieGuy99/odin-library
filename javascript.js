@@ -1,6 +1,7 @@
 const addBtn = document.getElementById('showDialog');
 const dialog = document.getElementById("dialog");
 const submit = document.getElementById('submit');
+const backdrop = document.getElementById('dialogBackdrop')
 
 const myLibrary = [];
 
@@ -22,14 +23,39 @@ Book.prototype.readStatus = function() {
 
 addBtn.addEventListener('click', () => {
     dialog.showModal();
-    console.log('help');
+    backdrop.classList.add('open');
+});
+
+function closeDialog() {
+    backdrop.classList.remove('open');
+    clearLabels();
+    dialog.close();
+}
+
+backdrop.addEventListener('click', function(e) {
+    if (e.target === dialog) {
+        closeDialog();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeDialog();
+    }
 });
 
 submit.addEventListener('click', () => {
+    if (document.getElementById('title').value == "") {
+        return false;
+    } else if (document.getElementById('author').value == "") {
+        return false;
+    } else if (document.getElementById('pages').value == "") {
+        return false;
+    }
     addBook();
     console.log(myLibrary.length);
     updateDisplay();
-    document.getElementById('bookInfo').reset();
+    clearLabels();
 });
 
 function addBook() {
@@ -45,7 +71,11 @@ function addBook() {
     id = crypto.randomUUID();
     const book = new Book(title, author, pages, read, id);
     myLibrary.push(book);
-    dialog.close();
+    closeDialog();
+}
+
+function clearLabels() {
+    document.getElementById('bookInfo').reset();
 }
 
 function updateDisplay() {
