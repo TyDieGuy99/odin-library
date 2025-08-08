@@ -14,10 +14,10 @@ function Book(title, author, pages, read, id) {
 }
 
 Book.prototype.readStatus = function() {
-    if (this.read == 'yes') {
-        this.read = 'no';
+    if (this.read == 'Yes') {
+        this.read = 'No';
     } else {
-        this.read = 'yes';
+        this.read = 'Yes';
     }
 }
 
@@ -44,6 +44,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+
 submit.addEventListener('click', () => {
     if (document.getElementById('title').value == "") {
         return false;
@@ -64,9 +65,9 @@ function addBook() {
     author = document.getElementById('author').value;
     pages = document.getElementById('pages').value;
     if (document.getElementById('readStatus').checked) {
-        read = 'yes';
+        read = 'Yes';
     } else {
-        read = 'no';
+        read = 'No';
     }
     id = crypto.randomUUID();
     const book = new Book(title, author, pages, read, id);
@@ -78,6 +79,8 @@ function clearLabels() {
     document.getElementById('bookInfo').reset();
 }
 
+
+
 function updateDisplay() {
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = '';
@@ -88,14 +91,28 @@ function updateDisplay() {
         bookContainer.classList.add('book');
         outputDiv.appendChild(bookContainer);
 
-        const title = document.createElement('p');
+        const titleBox = document.createElement('div');
+        titleBox.className = 'titleBox';
+        
+        const title= document.createElement('p');
         title.className = 'title';
+
         const author = document.createElement('p');
         author.className = 'author';
         const pages = document.createElement('p');
         pages.className = 'pages';
         const read = document.createElement('p');
         read.className = 'read';
+        const bookButtons = document.createElement('div');
+        bookButtons.className = 'bookButtonsContainer';
+
+        bookContainer.appendChild(titleBox);
+        bookContainer.appendChild(author);
+        bookContainer.appendChild(pages);
+        bookContainer.appendChild(read);
+        bookContainer.appendChild(bookButtons);
+
+
         const buttonDelete = document.createElement('button');
         buttonDelete.className = 'dialogBtn';
         const buttonRead = document.createElement('button');
@@ -104,8 +121,18 @@ function updateDisplay() {
         title.textContent = obj.title;
         author.textContent = 'By: ' + obj.author;
         pages.textContent = obj.pages + ' pages';
-        read.textContent = obj.read;
+        read.textContent = 'Read already? ' + obj.read;
 
+        buttonRead.textContent = 'Read Status'
+        buttonRead.onclick = function() {
+            for (let i = 0; i < myLibrary.length; i++) {
+                if (myLibrary[i].id == bookContainer.id) {
+                    myLibrary[i].readStatus();
+                    const count = bookContainer.children;
+                    count[3].textContent =  'Read already? ' + myLibrary[i].read;
+                }
+            }
+        };
 
         buttonDelete.textContent = 'Remove Book';
         buttonDelete.onclick = function() {
@@ -118,24 +145,24 @@ function updateDisplay() {
             } 
         };
 
-        buttonRead.textContent = 'Read Status'
-        buttonRead.onclick = function() {
-            for (let i = 0; i < myLibrary.length; i++) {
-                if (myLibrary[i].id == bookContainer.id) {
-                    myLibrary[i].readStatus();
-                    const count = bookContainer.children;
-                    count[3].textContent = myLibrary[i].read;
-                }
-            }
-        };
+        bookButtons.appendChild(buttonRead);
+        bookButtons.appendChild(buttonDelete);
 
-        bookContainer.appendChild(title);
-        bookContainer.appendChild(author);
-        bookContainer.appendChild(pages);
-        bookContainer.appendChild(read);
-        bookContainer.appendChild(buttonDelete);
-        bookContainer.appendChild(buttonRead);
-    })
+        
+        titleBox.appendChild(title);
+        const titleBoxHeight = titleBox.offsetHeight;
+        console.log(titleBox);
+        console.log(title);
+        const titleHeight = title.scrollHeight;
+        if (titleHeight > titleBoxHeight) {
+            const scrollDistance = titleBoxHeight - titleHeight;
+            bookContainer.style.setProperty('--title-scroll', `${scrollDistance}px`);
+        } else {
+            bookContainer.style.setProperty('--title-scroll', '0px');
+        }
+
+
+    });
 }
 
 
