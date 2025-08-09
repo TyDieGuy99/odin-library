@@ -233,8 +233,11 @@ button {
     background-color: var(--book--primary);
 }
 
-p {
+.pages,
+.read {
     color: var(--label-text);
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
 .titleBox {
@@ -247,6 +250,7 @@ p {
     font-weight: 600;
     font-size: 2rem;
     color: var(--label-text);
+    overflow-wrap: anywhere;
     transition: none;
     transform: translateY(0px);
 }
@@ -257,8 +261,16 @@ p {
 }
 
 .author {
-    font-weight: 500;
-    font-size: 1.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-weight: 550;
+    color: var(--label-text);
+    font-size: 1.35rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 275px;
 }
 
 .bookButtonsContainer {
