@@ -50,7 +50,7 @@ submit.addEventListener('click', () => {
         return false;
     } else if (document.getElementById('author').value == "") {
         return false;
-    } else if (document.getElementById('pages').value == "") {
+    } else if (document.getElementById('pages').value == "" || document.getElementById('pages').value < 1 || document.getElementById('pages').value > 150000) {
         return false;
     }
     addBook();
@@ -120,7 +120,12 @@ function updateDisplay() {
 
         title.textContent = obj.title;
         author.textContent = 'By: ' + obj.author;
-        pages.textContent = obj.pages + ' pages';
+        if (obj.pages > 1) {
+            pages.textContent = obj.pages + ' pages';
+        } else {
+            pages.textContent = obj.pages + ' page';
+        }
+        
         read.textContent = 'Read already? ' + obj.read;
 
         buttonRead.textContent = 'Read Status'
