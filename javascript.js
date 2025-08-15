@@ -114,11 +114,11 @@ function updateDisplay() {
         bookContainer.appendChild(pages);  
         bookContainer.appendChild(bookButtons);
 
-
-        const buttonDelete = document.createElement('button');
-        buttonDelete.className = 'dialogBtn';
         const buttonRead = document.createElement('button');
-        buttonRead.className = 'dialogBtn';
+        buttonRead.className = 'bookBtn';
+        const buttonDelete = document.createElement('button');
+        buttonDelete.className = 'bookBtn';
+        buttonDelete.id = 'deleteBtn';
 
         title.textContent = obj.title;
         author.textContent = 'By: ' + obj.author;
