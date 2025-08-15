@@ -179,10 +179,11 @@ input:focus {
     font-size: 1.15rem;
 }
 
-.dialogBtn {
+.dialogBtn,
+.bookBtn {
     background-color: var(--button);
+    border: 1px solid var(--button);
     color: var(--accent);
-    border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
     font-weight: 600;
@@ -190,9 +191,12 @@ input:focus {
     transition: all 0.3s;
 }
 
-.dialogBtn:hover {
+.dialogBtn:hover,
+.bookBtn:hover,
+.dialogBtn:focus {
     background-color: var(--button-hover);
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3);
+    transition: all 0.3s;
 }
 
 #cancelBtn {
@@ -201,7 +205,8 @@ input:focus {
     font-size: 1rem;
 }
 
-#cancelBtn:hover {
+#cancelBtn:hover,
+#deleteBtn:hover {
     background-color: rgba(192, 192, 192, 0.1);
     border-color: var(--accent);
 }
@@ -232,6 +237,7 @@ button {
     padding: 10px 20px;
     background-color: var(--book--primary);
     border: 2px solid var(--book--primary);
+    transition: 0.5s ease;
 }
 
 .pages,
@@ -292,6 +298,17 @@ button {
     max-width: 275px;
 }
 
+.bookBtn {
+    display: block;
+    max-width: 50%;
+    flex: 1;
+}
+
+#deleteBtn {
+    background-color: transparent;
+    border: 1px solid var(--input-border);
+}
+
 .bookButtonsContainer {
     display: flex;
     gap: 10px;
@@ -300,4 +317,5 @@ button {
 .book:hover {
     transition: 0.5s ease;
     border: 2px solid var(--button-hover);
+    transform: translateY(-10px);
 }
