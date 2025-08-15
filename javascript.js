@@ -14,10 +14,10 @@ function Book(title, author, pages, read, id) {
 }
 
 Book.prototype.readStatus = function() {
-    if (this.read == 'Yes') {
-        this.read = 'No';
+    if (this.read == 'READ') {
+        this.read = 'NEW';
     } else {
-        this.read = 'Yes';
+        this.read = 'READ';
     }
 }
 
@@ -65,9 +65,9 @@ function addBook() {
     author = document.getElementById('author').value;
     pages = document.getElementById('pages').value;
     if (document.getElementById('readStatus').checked) {
-        read = 'Yes';
+        read = 'READ';
     } else {
-        read = 'No';
+        read = 'NEW';
     }
     id = crypto.randomUUID();
     const book = new Book(title, author, pages, read, id);
@@ -78,8 +78,6 @@ function addBook() {
 function clearLabels() {
     document.getElementById('bookInfo').reset();
 }
-
-
 
 function updateDisplay() {
     const outputDiv = document.getElementById('output');
@@ -102,14 +100,18 @@ function updateDisplay() {
         const pages = document.createElement('p');
         pages.className = 'pages';
         const read = document.createElement('p');
-        read.className = 'read';
+        read.className = 'readStatus';
+        if (obj.read === 'READ') {
+            read.classList.add('read');
+            console.log('you have solved your problem');
+        }
         const bookButtons = document.createElement('div');
         bookButtons.className = 'bookButtonsContainer';
 
+        bookContainer.appendChild(read);
         bookContainer.appendChild(titleBox);
         bookContainer.appendChild(author);
-        bookContainer.appendChild(pages);
-        bookContainer.appendChild(read);
+        bookContainer.appendChild(pages);  
         bookContainer.appendChild(bookButtons);
 
 
@@ -126,15 +128,15 @@ function updateDisplay() {
             pages.textContent = obj.pages + ' page';
         }
         
-        read.textContent = 'Read already? ' + obj.read;
-
+        read.textContent = obj.read;
         buttonRead.textContent = 'Read Status'
         buttonRead.onclick = function() {
             for (let i = 0; i < myLibrary.length; i++) {
                 if (myLibrary[i].id == bookContainer.id) {
                     myLibrary[i].readStatus();
                     const count = bookContainer.children;
-                    count[3].textContent =  'Read already? ' + myLibrary[i].read;
+                    count[0].textContent = myLibrary[i].read;
+                    count[0].classList.toggle('read');
                 }
             }
         };
@@ -169,5 +171,3 @@ function updateDisplay() {
 
     });
 }
-
-
