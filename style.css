@@ -229,15 +229,34 @@ button {
     height: 400px;
     max-height: 400px;
     gap: 15px;
-    padding: 20px;
+    padding: 10px 20px;
     background-color: var(--book--primary);
+    border: 2px solid var(--book--primary);
 }
 
 .pages,
-.read {
+.readStatus {
     color: var(--label-text);
     font-size: 1.2rem;
     font-weight: 400;
+}
+
+.readStatus {
+    background-color: transparent;
+    padding: 2px 15px;
+    width: 100px;
+    border-radius: 15px;
+    border: 3px solid var(--button);
+    color: var(--label-text);
+    align-self: self-end;
+    transition: 0.5s ease; 
+}
+
+.read {
+    transition: 0.5s ease;
+    border: 3px solid var(--button);
+    background-color: var(--button);
+    color: var(--label-text);
 }
 
 .titleBox {
@@ -276,4 +295,9 @@ button {
 .bookButtonsContainer {
     display: flex;
     gap: 10px;
+}
+
+.book:hover {
+    transition: 0.5s ease;
+    border: 2px solid var(--button-hover);
 }
