@@ -21,6 +21,20 @@ Book.prototype.readStatus = function() {
     }
 }
 
+// document.body.addEventListener('keydown', templateBooks);
+
+window.onload = templateBooks();
+
+function templateBooks() {
+    console.log('function works');
+    const book = new Book('Belladonna', 'Adalyn Grace', 408, 'NEW', crypto.randomUUID());
+    myLibrary.push(book);
+    const book2 = new Book('Harry Potter and the Prisoner of Azkaban', 'J. K. Rowling', 435, 'READ', crypto.randomUUID());
+    myLibrary.push(book2);
+    updateDisplay();
+};
+
+
 addBtn.addEventListener('click', () => {
     dialog.showModal();
     backdrop.classList.add('open');
@@ -167,7 +181,5 @@ function updateDisplay() {
         } else {
             bookContainer.style.setProperty('--title-scroll', '0px');
         }
-
-
     });
 }
