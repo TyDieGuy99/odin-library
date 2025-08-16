@@ -28,6 +28,9 @@
 body {
     background-color: var(--bg-primary);
     color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 #header {
@@ -58,7 +61,7 @@ body {
     justify-content: center;
     z-index: 1000;
 
-    transition: opacity 0.32\s ease-out, visability 0.3s ease-out;
+    transition: opacity 0.32s ease-out, visability 0.3s ease-out;
 }
 
 .dialogBackdrop.open {
@@ -223,6 +226,8 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
     gap: 1em;
+    flex-grow: 1;
+    align-content: flex-start;
 }
 
 .book {
@@ -233,7 +238,6 @@ button {
     text-align: center;
     height: 400px;
     max-height: 400px;
-    gap: 15px;
     padding: 10px 20px;
     background-color: var(--book--primary);
     border: 2px solid var(--book--primary);
@@ -267,7 +271,7 @@ button {
 
 .titleBox {
     max-height: 40%;
-    max-width: 80%;
+    max-width: 75%;
     overflow: hidden;
 }
 
@@ -318,4 +322,18 @@ button {
     transition: 0.5s ease;
     border: 2px solid var(--button-hover);
     transform: translateY(-10px);
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    padding: 0.25em;
+    background-color: var(--nav-primary);
+}
+
+#githubLogo {
+    max-height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    transition: 0.2s;
 }
