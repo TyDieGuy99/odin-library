@@ -5,6 +5,11 @@ const backdrop = document.getElementById('dialogBackdrop')
 
 const myLibrary = [];
 
+//0 means its being sorted from least to most pages or from A-Z, 1 being most to least pages or Z-A
+let pageOrder = 0;
+let titleOrder = 0;
+let authorOrder = 0;
+
 function Book(title, author, pages, read, id) {
     this.title = title;
     this.author = author;
@@ -33,6 +38,73 @@ function templateBooks() {
     myLibrary.push(book2);
     updateDisplay();
 };
+
+function testFunction() {
+    console.log('change order of books by page count');
+    if (pageOrder == 0) {
+        myLibrary.sort(function(a, b){return a.pages - b.pages});
+        pageOrder = 1;
+    } else {
+        myLibrary.sort(function(a, b){return b.pages - a.pages});
+        pageOrder = 0;
+    }
+    updateDisplay();
+}
+function testFunction2() {
+    console.log('change order of books by title');
+    myLibrary.sort(function(a, b){
+        const titleA = a.title.toUpperCase();
+        const titleB = b.title.toUpperCase();
+        if (titleOrder == 0) {
+            titleOrder = 1;
+            if (titleA < titleB) {
+                return -1; // a before b
+            }
+            if (titleA > titleB) {
+                return 1; // b before a
+            }
+            return 0; //equal 
+        } else {
+            titleOrder = 0;
+            if (titleA < titleB) {
+                return 1; // b before a
+            }
+            if (titleA > titleB) {
+                return -1; // a before b
+            }
+            return 0; //equal
+        }
+        
+    });
+    updateDisplay();
+}
+function testFunction3() {
+    console.log('change order of books by author');
+    myLibrary.sort(function(a, b){
+        const authorA = a.author.toUpperCase();
+        const authorB = b.author.toUpperCase();
+        if (authorOrder == 0) {
+            authorOrder = 1;
+            if (authorA < authorB) {
+                return -1;
+            }
+            if (authorA > authorB) {
+                return 1;
+            }
+            return 0;
+        } else {
+            authorOrder = 0;
+            if (authorA < authorB) {
+                return 1;
+            }
+            if (authorA > authorB) {
+                return -1;
+            }
+            return 0;
+        }
+    });
+    updateDisplay();
+}
 
 
 addBtn.addEventListener('click', () => {
@@ -74,7 +146,7 @@ submit.addEventListener('click', () => {
 });
 
 function addBook() {
-    console.log("button has been clicked");
+    console.log("Book has been added");
     title = document.getElementById('title').value;
     author = document.getElementById('author').value;
     pages = document.getElementById('pages').value;
@@ -117,7 +189,6 @@ function updateDisplay() {
         read.className = 'readStatus';
         if (obj.read === 'READ') {
             read.classList.add('read');
-            console.log('you have solved your problem');
         }
         const bookButtons = document.createElement('div');
         bookButtons.className = 'bookButtonsContainer';
@@ -172,8 +243,6 @@ function updateDisplay() {
         
         titleBox.appendChild(title);
         const titleBoxHeight = titleBox.offsetHeight;
-        console.log(titleBox);
-        console.log(title);
         const titleHeight = title.scrollHeight;
         if (titleHeight > titleBoxHeight) {
             const scrollDistance = titleBoxHeight - titleHeight;
