@@ -13,7 +13,7 @@ const myLibrary = [];
 let pageOrder = 0;
 let titleOrder = 0;
 let authorOrder = 0;
-let order = 1; //adding book increases value by 1 before order++, set to 1 for 2 pre-added books in library
+let order = 2; //adding book increases value by 2 before order++, set to 1 for 3 pre-added books in library
 
 function Book(title, author, pages, read, id, order) {
     this.title = title;
@@ -54,6 +54,8 @@ function templateBooks() {
     myLibrary.push(book);
     const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), 1);
     myLibrary.push(book2);
+    const book3 = new Book('1984', 'George Orwell', 328, 'READ', crypto.randomUUID(), 2);
+    myLibrary.push(book3);
     updateDisplay();
 };
 
