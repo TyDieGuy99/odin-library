@@ -46,9 +46,11 @@ function templateBooks() {
 function testFunction() {
     console.log('change order of books by page count');
     if (pageOrder == 0) {
+        pageSort.textContent = 'Sort by; Low to High';
         myLibrary.sort(function(a, b){return a.pages - b.pages});
         pageOrder = 1;
     } else {
+        pageSort.textContent = 'Sort by; High to Low';
         myLibrary.sort(function(a, b){return b.pages - a.pages});
         pageOrder = 0;
     }
@@ -60,7 +62,7 @@ function testFunction2() {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
         if (titleOrder == 0) {
-            titleSort.textContent = 'Sort by Title (Z-A)';
+            titleSort.textContent = 'Sort by Title; (Z-A)';
             titleOrder = 1;
             if (titleA < titleB) {
                 return -1; // a before b
@@ -70,7 +72,7 @@ function testFunction2() {
             }
             return 0; //equal 
         } else {
-            titleSort.textContent = 'Sort by Title (A-Z)';
+            titleSort.textContent = 'Sort by Title; (A-Z)';
             titleOrder = 0;
             if (titleA < titleB) {
                 return 1; // b before a
@@ -90,7 +92,7 @@ function testFunction3() {
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
         if (authorOrder == 0) {
-            authorSort.textContent = 'Sort by Author (Z-A)';
+            authorSort.textContent = 'Sort by Author; (Z-A)';
             authorOrder = 1;
             if (authorA < authorB) {
                 return -1;
@@ -100,7 +102,7 @@ function testFunction3() {
             }
             return 0;
         } else {
-            authorSort.textContent = 'Sort by Author (A-Z)';
+            authorSort.textContent = 'Sort by Author; (A-Z)';
             authorOrder = 0;
             if (authorA < authorB) {
                 return 1;
@@ -120,9 +122,9 @@ function defaultOrder() {
     titleOrder = 0;
     authorOrder = 0;
     updateDisplay();
-    pageSort.textContent = 'Sort by Page Count &uarr;';
-    titleSort.textContent = 'Sort by Title (A-Z)';
-    authorSort.textContent = 'Sort by Author (A-Z)';
+    pageSort.textContent = 'Sort by; Low to High';
+    titleSort.textContent = 'Sort by Title; (A-Z)';
+    authorSort.textContent = 'Sort by Author; (A-Z)';
 }
 
 addBtn.addEventListener('click', () => {
