@@ -284,6 +284,7 @@ button {
 }
 
 .titleBox {
+    height: 40%;
     max-height: 40%;
     max-width: 75%;
     overflow: hidden;
