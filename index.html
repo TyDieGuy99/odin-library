@@ -8,16 +8,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="header">
+    <header id="header">
         <div class="headerLeft">
             <h1>Library Project</h1>
             <button class="dialogBtn" id="showDialog">Add Book</button>
         </div>
         <div class="headerRight">
             <button class="dialogBtn" onclick="defaultOrder()">Default</button>
-            <button class="dialogBtn" id="pageSortBtn" onclick="testFunction()">Sort by; Low to High</button>
-            <button class="dialogBtn" id="titleSortBtn" onclick="testFunction2()">Sort by Title; (A-Z)</button>
-            <button class="dialogBtn" id="authorSortBtn" onclick="testFunction3()">Sort by Author; (A-Z)</button>     
+            <button class="dialogBtn" id="pageSortBtn">Sort by; Low to High</button>
+            <button class="dialogBtn" id="titleSortBtn">Sort by Title; (A-Z)</button>
+            <button class="dialogBtn" id="authorSortBtn">Sort by Author; (A-Z)</button>     
         </div>
         <div class="dialogBackdrop" id="dialogBackdrop">
             <dialog id="dialog">
@@ -45,7 +45,7 @@
                 </form>
             </dialog>
         </div> 
-    </div>
+    </header>
     
     <div id="output">
         
