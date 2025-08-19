@@ -9,11 +9,11 @@ const authorSortBtn = document.getElementById('authorSortBtn');
 
 const myLibrary = [];
 
-//0 means its being sorted from least to most pages or from A-Z, 1 being most to least pages or Z-A
-let pageOrder = 0;
-let titleOrder = 0;
-let authorOrder = 0;
-let order = 2; //adding book increases value by 2 before order++, set to 1 for 3 pre-added books in library
+//true means its being sorted from least to most pages or from A-Z, false being most to least pages or Z-A
+let pageOrder = true;
+let titleOrder = true;
+let authorOrder = true;
+let order = 3; //adding book increases value by 1 before order++
 
 function Book(title, author, pages, read, id, order) {
     this.title = title;
@@ -32,49 +32,38 @@ Book.prototype.readStatus = function() {
     }
 }
 
-pageSortBtn.addEventListener('click', () => {
-    pageSort();
-});
-
-titleSortBtn.addEventListener('click', () => {
-    titleSort();
-});
-
-authorSortBtn.addEventListener('click', () => {
-    authorSort();
-});
-
-
-
 window.onload = templateBooks();
 
 function templateBooks() {
     console.log('function works');
-    const book = new Book('Lord of the Rings: The Fellowship of the Ring', 'J. R. R. Tolkein', 423, 'NEW', crypto.randomUUID(), 0);
-    myLibrary.push(book);
-    const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), 1);
+    const book1 = new Book('Lord of the Rings: The Fellowship of the Ring', 'J. R. R. Tolkein', 423, 'NEW', crypto.randomUUID(), 1);
+    myLibrary.push(book1);
+    const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), 2);
     myLibrary.push(book2);
-    const book3 = new Book('1984', 'George Orwell', 328, 'READ', crypto.randomUUID(), 2);
+    const book3 = new Book('1984', 'George Orwell', 328, 'READ', crypto.randomUUID(), 3);
     myLibrary.push(book3);
     updateDisplay();
-};
+}
 
 function pageSort() {
     console.log('change order of books by page count');
     pageSortBtn.classList.add('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
-    if (pageOrder == 0) {
+    console.log(pageOrder);
+    if (pageOrder == true) {
         pageSortBtn.textContent = 'Sort by; Low to High';
-        myLibrary.sort(function(a, b){return a.pages - b.pages});
-        pageOrder = 1;
+        myLibrary.sort(function(a, b){
+        return a.pages - b.pages});
     } else {
         pageSortBtn.textContent = 'Sort by; High to Low';
-        myLibrary.sort(function(a, b){return b.pages - a.pages});
-        pageOrder = 0;
+        myLibrary.sort(function(a, b){
+        return b.pages - a.pages});
     }
+    pageOrder = !pageOrder;
     updateDisplay();
 }
+
 function titleSort() {
     console.log('change order of books by title');
     titleSortBtn.classList.add('selectedSort');
@@ -83,9 +72,8 @@ function titleSort() {
     myLibrary.sort(function(a, b){
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
-        if (titleOrder == 0) {
+        if (titleOrder == true) {
             titleSortBtn.textContent = 'Sort by Title; (Z-A)';
-            titleOrder = 1;
             if (titleA < titleB) {
                 return -1; // a before b
             }
@@ -95,7 +83,6 @@ function titleSort() {
             return 0; //equal 
         } else {
             titleSortBtn.textContent = 'Sort by Title; (A-Z)';
-            titleOrder = 0;
             if (titleA < titleB) {
                 return 1; // b before a
             }
@@ -104,10 +91,11 @@ function titleSort() {
             }
             return 0; //equal
         }
-        
     });
+    titleOrder = !titleOrder;
     updateDisplay();
 }
+
 function authorSort() {
     console.log('change order of books by author');
     authorSortBtn.classList.add('selectedSort');
@@ -116,9 +104,8 @@ function authorSort() {
     myLibrary.sort(function(a, b){
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
-        if (authorOrder == 0) {
+        if (authorOrder == true) {
             authorSortBtn.textContent = 'Sort by Author; (Z-A)';
-            authorOrder = 1;
             if (authorA < authorB) {
                 return -1;
             }
@@ -128,7 +115,7 @@ function authorSort() {
             return 0;
         } else {
             authorSortBtn.textContent = 'Sort by Author; (A-Z)';
-            authorOrder = 0;
+            
             if (authorA < authorB) {
                 return 1;
             }
@@ -138,14 +125,16 @@ function authorSort() {
             return 0;
         }
     });
+    authorOrder = !authorOrder;
     updateDisplay();
 }
+
 function defaultOrder() {
     console.log('this is order of books by when they were added');
     myLibrary.sort(function(a, b){return a.order - b.order});
-    pageOrder = 0;
-    titleOrder = 0;
-    authorOrder = 0;
+    pageOrder = true;
+    titleOrder = true;
+    authorOrder = true;
     updateDisplay();
     pageSortBtn.textContent = 'Sort by; Low to High';
     titleSortBtn.textContent = 'Sort by Title; (A-Z)';
@@ -178,6 +167,11 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+pageSortBtn.addEventListener('click', pageSort);
+
+titleSortBtn.addEventListener('click', titleSort);
+
+authorSortBtn.addEventListener('click', authorSort);
 
 submit.addEventListener('click', () => {
     if (document.getElementById('title').value == "") {
