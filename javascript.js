@@ -192,6 +192,7 @@ function addBook() {
     const book = new Book(title, author, pages, read, id, order);
     myLibrary.push(book);
     closeDialog();
+    defaultOrder();
 }
 
 function clearLabels() {
