@@ -230,6 +230,7 @@ input:focus {
 button {
     background-color: var(--button);
     color: var(--accent);
+    border: 1px solid var(--button);
 }
 
 #output {
@@ -358,5 +359,5 @@ footer {
 }
 
 .selectedSort {
-    border: 2px solid var(--accent);
+    border: 1px solid var(--accent);
 }
