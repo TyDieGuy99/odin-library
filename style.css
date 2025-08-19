@@ -38,8 +38,19 @@ body {
     border-color: var(--nav-border);
     padding: 2em;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 5em;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+}
+
+.headerRight {
+    display: flex;
+    gap: 1em;
 }
 
 /*this is all for the dialog pop up */
