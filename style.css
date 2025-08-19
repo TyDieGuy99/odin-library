@@ -356,3 +356,7 @@ footer {
     transform: scale(1.25);
     transition: 0.5s;
 }
+
+.selectedSort {
+    border: 2px solid var(--accent);
+}
