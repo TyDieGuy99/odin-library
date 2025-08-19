@@ -9,13 +9,15 @@ const myLibrary = [];
 let pageOrder = 0;
 let titleOrder = 0;
 let authorOrder = 0;
+let order = 1; //adding book increases value by 1 before order++, set to 1 for 2 pre-added books in library
 
-function Book(title, author, pages, read, id) {
+function Book(title, author, pages, read, id, order) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.id = id
+    this.id = id;
+    this.order = order;
 }
 
 Book.prototype.readStatus = function() {
@@ -26,15 +28,13 @@ Book.prototype.readStatus = function() {
     }
 }
 
-// document.body.addEventListener('keydown', templateBooks);
-
 window.onload = templateBooks();
 
 function templateBooks() {
     console.log('function works');
-    const book = new Book('Belladonna', 'Adalyn Grace', 408, 'NEW', crypto.randomUUID());
+    const book = new Book('Belladonna', 'Adalyn Grace', 408, 'NEW', crypto.randomUUID(), 0);
     myLibrary.push(book);
-    const book2 = new Book('Harry Potter and the Prisoner of Azkaban', 'J. K. Rowling', 435, 'READ', crypto.randomUUID());
+    const book2 = new Book('Harry Potter and the Prisoner of Azkaban', 'J. K. Rowling', 435, 'READ', crypto.randomUUID(), 1);
     myLibrary.push(book2);
     updateDisplay();
 };
@@ -105,7 +105,11 @@ function testFunction3() {
     });
     updateDisplay();
 }
-
+function defaultOrder() {
+    console.log('this is order of books by when they were added');
+        myLibrary.sort(function(a, b){return a.order - b.order});
+    updateDisplay();
+}
 
 addBtn.addEventListener('click', () => {
     dialog.showModal();
@@ -156,7 +160,8 @@ function addBook() {
         read = 'NEW';
     }
     id = crypto.randomUUID();
-    const book = new Book(title, author, pages, read, id);
+    order++;
+    const book = new Book(title, author, pages, read, id, order);
     myLibrary.push(book);
     closeDialog();
 }
