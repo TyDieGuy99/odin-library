@@ -73,7 +73,7 @@ function titleSort() {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
         if (titleOrder == true) {
-            titleSortBtn.textContent = 'Sort by Title; (Z-A)';
+            titleSortBtn.textContent = 'Sort by Title; (A-Z)';
             if (titleA < titleB) {
                 return -1; // a before b
             }
@@ -82,7 +82,7 @@ function titleSort() {
             }
             return 0; //equal 
         } else {
-            titleSortBtn.textContent = 'Sort by Title; (A-Z)';
+            titleSortBtn.textContent = 'Sort by Title; (Z-A)';
             if (titleA < titleB) {
                 return 1; // b before a
             }
@@ -105,7 +105,7 @@ function authorSort() {
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
         if (authorOrder == true) {
-            authorSortBtn.textContent = 'Sort by Author; (Z-A)';
+            authorSortBtn.textContent = 'Sort by Author; (A-Z)';
             if (authorA < authorB) {
                 return -1;
             }
@@ -114,7 +114,7 @@ function authorSort() {
             }
             return 0;
         } else {
-            authorSortBtn.textContent = 'Sort by Author; (A-Z)';
+            authorSortBtn.textContent = 'Sort by Author; (Z-A)';
             
             if (authorA < authorB) {
                 return 1;
