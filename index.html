@@ -9,11 +9,16 @@
 </head>
 <body>
     <div id="header">
-        <h1>Library Project</h1>
-        <button class="dialogBtn" id="showDialog">Add Book</button>
-        <button class="dialogBtn" onclick="testFunction()">page count sort</button>
-        <button class="dialogBtn" onclick="testFunction2()">title sort</button>
-        <button class="dialogBtn" onclick="testFunction3()">author sort</button>
+        <div class="headerLeft">
+            <h1>Library Project</h1>
+            <button class="dialogBtn" id="showDialog">Add Book</button>
+        </div>
+        <div class="headerRight">
+            <button class="dialogBtn" onclick="defaultOrder()">Default</button>
+            <button class="dialogBtn" onclick="testFunction()">Sort by Page Count</button>
+            <button class="dialogBtn" onclick="testFunction2()">Sort by Title</button>
+            <button class="dialogBtn" onclick="testFunction3()">Sort by Author</button>     
+        </div>
         <div class="dialogBackdrop" id="dialogBackdrop">
             <dialog id="dialog">
                 <div class="dialogHeader">
