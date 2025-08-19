@@ -38,7 +38,6 @@ body {
 #header {
     background-color: var(--nav-primary);
     border-color: var(--nav-border);
-    padding: 2em;
     display: flex;
     justify-content: space-between;
     gap: 5em;
@@ -48,11 +47,22 @@ body {
     display: flex;
     flex-direction: row;
     gap: 3em;
+    align-items: center;
+    padding: 2em;
 }
 
 .headerRight {
     display: flex;
-    gap: 1em;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.25em;
+    padding-bottom: 2em;
+    padding-right: 2em;
+}
+
+h2 {
+    font-size: 1.25rem;
 }
 
 /*this is all for the dialog pop up */
@@ -123,6 +133,13 @@ dialog {
     box-shadow: 0px 8px 32px rgba(0,0,0,0.6);
 
     animation: slideIn 0.3s ease-out;
+}
+
+#showDialog {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 75px;
+    height: 75px;
 }
 
 @keyframes slideIn {
