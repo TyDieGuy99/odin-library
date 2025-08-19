@@ -3,9 +3,9 @@ const dialog = document.getElementById("dialog");
 const submit = document.getElementById('submit');
 const backdrop = document.getElementById('dialogBackdrop');
 
-const pageSort = document.getElementById('pageSortBtn');
-const titleSort = document.getElementById('titleSortBtn');
-const authorSort = document.getElementById('authorSortBtn');
+const pageSortBtn = document.getElementById('pageSortBtn');
+const titleSortBtn = document.getElementById('titleSortBtn');
+const authorSortBtn = document.getElementById('authorSortBtn');
 
 const myLibrary = [];
 
@@ -32,6 +32,20 @@ Book.prototype.readStatus = function() {
     }
 }
 
+pageSortBtn.addEventListener('click', () => {
+    pageSort();
+});
+
+titleSortBtn.addEventListener('click', () => {
+    titleSort();
+});
+
+authorSortBtn.addEventListener('click', () => {
+    authorSort();
+});
+
+
+
 window.onload = templateBooks();
 
 function templateBooks() {
@@ -43,32 +57,32 @@ function templateBooks() {
     updateDisplay();
 };
 
-function testFunction() {
+function pageSort() {
     console.log('change order of books by page count');
-    pageSort.classList.add('selectedSort');
-    titleSort.classList.remove('selectedSort');
-    authorSort.classList.remove('selectedSort');
+    pageSortBtn.classList.add('selectedSort');
+    titleSortBtn.classList.remove('selectedSort');
+    authorSortBtn.classList.remove('selectedSort');
     if (pageOrder == 0) {
-        pageSort.textContent = 'Sort by; Low to High';
+        pageSortBtn.textContent = 'Sort by; Low to High';
         myLibrary.sort(function(a, b){return a.pages - b.pages});
         pageOrder = 1;
     } else {
-        pageSort.textContent = 'Sort by; High to Low';
+        pageSortBtn.textContent = 'Sort by; High to Low';
         myLibrary.sort(function(a, b){return b.pages - a.pages});
         pageOrder = 0;
     }
     updateDisplay();
 }
-function testFunction2() {
+function titleSort() {
     console.log('change order of books by title');
-    titleSort.classList.add('selectedSort');
-    pageSort.classList.remove('selectedSort');
-    authorSort.classList.remove('selectedSort');
+    titleSortBtn.classList.add('selectedSort');
+    pageSortBtn.classList.remove('selectedSort');
+    authorSortBtn.classList.remove('selectedSort');
     myLibrary.sort(function(a, b){
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
         if (titleOrder == 0) {
-            titleSort.textContent = 'Sort by Title; (Z-A)';
+            titleSortBtn.textContent = 'Sort by Title; (Z-A)';
             titleOrder = 1;
             if (titleA < titleB) {
                 return -1; // a before b
@@ -78,7 +92,7 @@ function testFunction2() {
             }
             return 0; //equal 
         } else {
-            titleSort.textContent = 'Sort by Title; (A-Z)';
+            titleSortBtn.textContent = 'Sort by Title; (A-Z)';
             titleOrder = 0;
             if (titleA < titleB) {
                 return 1; // b before a
@@ -92,16 +106,16 @@ function testFunction2() {
     });
     updateDisplay();
 }
-function testFunction3() {
+function authorSort() {
     console.log('change order of books by author');
-    authorSort.classList.add('selectedSort');
-    pageSort.classList.remove('selectedSort');
-    titleSort.classList.remove('selectedSort');
+    authorSortBtn.classList.add('selectedSort');
+    pageSortBtn.classList.remove('selectedSort');
+    titleSortBtn.classList.remove('selectedSort');
     myLibrary.sort(function(a, b){
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
         if (authorOrder == 0) {
-            authorSort.textContent = 'Sort by Author; (Z-A)';
+            authorSortBtn.textContent = 'Sort by Author; (Z-A)';
             authorOrder = 1;
             if (authorA < authorB) {
                 return -1;
@@ -111,7 +125,7 @@ function testFunction3() {
             }
             return 0;
         } else {
-            authorSort.textContent = 'Sort by Author; (A-Z)';
+            authorSortBtn.textContent = 'Sort by Author; (A-Z)';
             authorOrder = 0;
             if (authorA < authorB) {
                 return 1;
@@ -131,12 +145,12 @@ function defaultOrder() {
     titleOrder = 0;
     authorOrder = 0;
     updateDisplay();
-    pageSort.textContent = 'Sort by; Low to High';
-    titleSort.textContent = 'Sort by Title; (A-Z)';
-    authorSort.textContent = 'Sort by Author; (A-Z)';
-    pageSort.classList.remove('selectedSort');
-    titleSort.classList.remove('selectedSort');
-    authorSort.classList.remove('selectedSort');
+    pageSortBtn.textContent = 'Sort by; Low to High';
+    titleSortBtn.textContent = 'Sort by Title; (A-Z)';
+    authorSortBtn.textContent = 'Sort by Author; (A-Z)';
+    pageSortBtn.classList.remove('selectedSort');
+    titleSortBtn.classList.remove('selectedSort');
+    authorSortBtn.classList.remove('selectedSort');
 }
 
 addBtn.addEventListener('click', () => {
