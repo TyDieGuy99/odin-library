@@ -36,9 +36,9 @@ window.onload = templateBooks();
 
 function templateBooks() {
     console.log('function works');
-    const book = new Book('Belladonna', 'Adalyn Grace', 408, 'NEW', crypto.randomUUID(), 0);
+    const book = new Book('Lord of the Rings: The Fellowship of the Ring', 'J. R. R. Tolkein', 423, 'NEW', crypto.randomUUID(), 0);
     myLibrary.push(book);
-    const book2 = new Book('Harry Potter and the Prisoner of Azkaban', 'J. K. Rowling', 435, 'READ', crypto.randomUUID(), 1);
+    const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), 1);
     myLibrary.push(book2);
     updateDisplay();
 };
