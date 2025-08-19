@@ -52,11 +52,11 @@ function pageSort() {
     authorSortBtn.classList.remove('selectedSort');
     console.log(pageOrder);
     if (pageOrder == true) {
-        pageSortBtn.textContent = 'Sort by; Low to High';
+        pageSortBtn.textContent = 'Pages; Low to High';
         myLibrary.sort(function(a, b){
         return a.pages - b.pages});
     } else {
-        pageSortBtn.textContent = 'Sort by; High to Low';
+        pageSortBtn.textContent = 'Pages; High to Low';
         myLibrary.sort(function(a, b){
         return b.pages - a.pages});
     }
@@ -73,7 +73,7 @@ function titleSort() {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
         if (titleOrder == true) {
-            titleSortBtn.textContent = 'Sort by Title; (A-Z)';
+            titleSortBtn.textContent = 'Title; (A-Z)';
             if (titleA < titleB) {
                 return -1; // a before b
             }
@@ -82,7 +82,7 @@ function titleSort() {
             }
             return 0; //equal 
         } else {
-            titleSortBtn.textContent = 'Sort by Title; (Z-A)';
+            titleSortBtn.textContent = 'Title; (Z-A)';
             if (titleA < titleB) {
                 return 1; // b before a
             }
@@ -105,7 +105,7 @@ function authorSort() {
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
         if (authorOrder == true) {
-            authorSortBtn.textContent = 'Sort by Author; (A-Z)';
+            authorSortBtn.textContent = 'Author; (A-Z)';
             if (authorA < authorB) {
                 return -1;
             }
@@ -114,7 +114,7 @@ function authorSort() {
             }
             return 0;
         } else {
-            authorSortBtn.textContent = 'Sort by Author; (Z-A)';
+            authorSortBtn.textContent = 'Author; (Z-A)';
             
             if (authorA < authorB) {
                 return 1;
@@ -136,9 +136,9 @@ function defaultOrder() {
     titleOrder = true;
     authorOrder = true;
     updateDisplay();
-    pageSortBtn.textContent = 'Sort by; Low to High';
-    titleSortBtn.textContent = 'Sort by Title; (A-Z)';
-    authorSortBtn.textContent = 'Sort by Author; (A-Z)';
+    pageSortBtn.textContent = 'Pages; Low to High';
+    titleSortBtn.textContent = 'Title; (A-Z)';
+    authorSortBtn.textContent = 'Author; (A-Z)';
     pageSortBtn.classList.remove('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
