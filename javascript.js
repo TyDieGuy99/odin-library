@@ -1,8 +1,9 @@
-const addBtn = document.getElementById('showDialog');
-const submitBtn = document.getElementById('submit');
-
 const dialog = document.getElementById("dialog");
 const backdrop = document.getElementById('dialogBackdrop');
+
+//dialog related buttons
+const addBtn = document.getElementById('showDialog');
+const submitBtn = document.getElementById('submit');
 
 //sort buttons
 const defaultSortBtn = document.getElementById('defaultSortBtn');
@@ -178,7 +179,7 @@ addBtn.addEventListener('click', () => {
 
 function closeDialog() {
     backdrop.classList.remove('open');
-    clearLabels();
+    document.getElementById('bookInfo').reset();
     dialog.close();
 }
 
@@ -207,10 +208,6 @@ submitBtn.addEventListener('click', () => {
     updateDisplay();
     clearLabels();
 });
-
-function clearLabels() {
-    document.getElementById('bookInfo').reset();
-}
 
 function updateDisplay() {
     const libraryDiv = document.getElementById('library');
