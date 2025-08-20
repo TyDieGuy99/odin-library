@@ -1,23 +1,18 @@
 :root {
     --bg-primary: #0d1117;
 
-
     --nav-primary: #2d1b69;
     --nav-border: #4c1d95;
     --label-text: #e6eeff;
     --input-background: #1e1b4b;
     --input-border: #4c1d95;
 
-
     --book--primary: #1e1b4b;
     --accent: #c0c0c0;
     --button: #8b5cf6;
     --button-hover: #7c3aed;
 
-    font-family: 'Times New Roman', Times, serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
 }
-
 
 * {
     margin: 0;
@@ -27,15 +22,18 @@
     /* outline: 1px solid red; */
 }
 
+    /* general styles */
+
 body {
     background-color: var(--bg-primary);
     color: var(--accent);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Times New Roman', Times, serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#header {
+header {
     background-color: var(--nav-primary);
     border-color: var(--nav-border);
     display: flex;
@@ -43,12 +41,95 @@ body {
     gap: 5em;
 }
 
+h2 {
+    font-size: 1.25rem;
+}
+
+button {
+    background-color: var(--button);
+    color: var(--accent);
+    border: 1px solid var(--button);
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    padding: 0.25em;
+    background-color: var(--nav-primary);
+}
+
+    /* form related general styles */
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    color: var(--accent);
+    font-size: 1.5rem;
+    gap: 1em;
+    padding: 3em;
+}
+
+label {
+    display: block;
+    color: var(--label-text);
+    font-weight: 600;
+    font-size: 1.15rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-background);
+    color: var(--label-text);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.2);
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+
+    background-color: var(--book--primary);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    box-shadow: 0px 8px 32px rgba(0,0,0,0.6);
+
+    animation: slideIn 0.3s ease-out;
+}
+
+    /* within header */
+
 .headerLeft {
     display: flex;
     flex-direction: row;
     gap: 3em;
     align-items: center;
     padding: 2em;
+}
+
+#showDialog {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 75px;
+    height: 75px;
 }
 
 .headerRight {
@@ -61,11 +142,28 @@ body {
     padding-right: 2em;
 }
 
-h2 {
-    font-size: 1.25rem;
+.selectedSort { /* applied through DOM */
+    border: 1px solid var(--accent);
 }
 
-/*this is all for the dialog pop up */
+/* within footer */
+
+#githubLogo {
+    max-height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    transition: 0.2s;
+    width: 50px;
+    height: 50px;
+    transition: 0.5s;
+}
+    
+#githubLogo:hover {
+    transform: scale(1.25);
+    transition: 0.5s;
+}
+
+/* within dialog box */
 
 .dialogBackdrop {
     position: fixed;
@@ -119,79 +217,6 @@ h2 {
     background-color: rgba(192, 192, 192, 0.1);
 }
 
-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: fit-content;
-    height: fit-content;
-
-    background-color: var(--book--primary);
-    border: 1px solid var(--input-border);
-    border-radius: 5px;
-    box-shadow: 0px 8px 32px rgba(0,0,0,0.6);
-
-    animation: slideIn 0.3s ease-out;
-}
-
-#showDialog {
-    font-size: 2rem;
-    font-weight: 600;
-    width: 75px;
-    height: 75px;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -65%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    color: var(--accent);
-    font-size: 1.5rem;
-    gap: 1em;
-    padding: 3em;
-}
-
-label {
-    display: block;
-    color: var(--label-text);
-    font-weight: 600;
-    font-size: 1.15rem;
-}
-
-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--input-border);
-    background-color: var(--input-background);
-    color: var(--label-text);
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: all 0.3s;
-    box-sizing: border-box;
-}
-
-input::placeholder {
-    color: #9ca3af;
-}
-
-input:focus {
-    border-color: var(--accent);
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.2);
-}
-
 .checkboxGroup {
     display: flex;
     align-items: center;
@@ -212,8 +237,20 @@ input:focus {
     font-size: 1.15rem;
 }
 
-.dialogBtn,
-.bookBtn {
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -65%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+button,
+.bookBtn,
+#submit {
     background-color: var(--button);
     border: 1px solid var(--button);
     color: var(--accent);
@@ -224,9 +261,11 @@ input:focus {
     transition: all 0.3s;
 }
 
-.dialogBtn:hover,
+button:hover,
 .bookBtn:hover,
-.dialogBtn:focus {
+button:focus,
+#submit:hover,
+#submit:focus {
     background-color: var(--button-hover);
     box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3);
     transition: all 0.3s;
@@ -244,15 +283,9 @@ input:focus {
     border-color: var(--accent);
 }
 
-/* end of dialog */
+/* main content */
 
-button {
-    background-color: var(--button);
-    color: var(--accent);
-    border: 1px solid var(--button);
-}
-
-#output {
+#library {
     margin: 15px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
@@ -334,6 +367,11 @@ button {
     max-width: 275px;
 }
 
+.bookButtonsContainer {
+    display: flex;
+    gap: 10px;
+}
+
 .bookBtn {
     display: block;
     max-width: 50%;
@@ -345,39 +383,8 @@ button {
     border: 1px solid var(--input-border);
 }
 
-.bookButtonsContainer {
-    display: flex;
-    gap: 10px;
-}
-
 .book:hover {
     transition: 0.5s ease;
     border: 2px solid var(--button-hover);
     transform: translateY(-10px);
-}
-
-footer {
-    text-align: center;
-    width: 100%;
-    padding: 0.25em;
-    background-color: var(--nav-primary);
-}
-
-#githubLogo {
-    max-height: 100%;
-    object-fit: contain;
-    filter: invert(1);
-    transition: 0.2s;
-    width: 50px;
-    height: 50px;
-    transition: 0.5s;
-}
-
-#githubLogo:hover {
-    transform: scale(1.25);
-    transition: 0.5s;
-}
-
-.selectedSort {
-    border: 1px solid var(--accent);
 }
