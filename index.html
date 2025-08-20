@@ -11,15 +11,15 @@
     <header id="header">
         <div class="headerLeft">
             <h1>Library Project</h1>
-            <button class="dialogBtn" id="showDialog">+</button>
+            <button id="showDialog">+</button>
         </div>
         <div class="headerRight">
             <h2>Sort By:</h2>
             <div class="sortBtnContainer">
-                <button class="dialogBtn" onclick="defaultOrder()">Default</button>
-                <button class="dialogBtn" id="pageSortBtn">Pages; Low to High</button>
-                <button class="dialogBtn" id="titleSortBtn">Title; (A-Z)</button>
-                <button class="dialogBtn" id="authorSortBtn">Author; (A-Z)</button>
+                <button onclick="defaultOrder()">Default</button>
+                <button id="pageSortBtn">Pages; Low to High</button>
+                <button id="titleSortBtn">Title; (A-Z)</button>
+                <button id="authorSortBtn">Author; (A-Z)</button>
             </div>     
         </div>
         <div class="dialogBackdrop" id="dialogBackdrop">
@@ -43,14 +43,14 @@
                         <div>
     
                         </div>
-                    <input type="submit" value="Submit" class="dialogBtn" id="submit">
-                    <button class="dialogBtn" id="cancelBtn" onclick="closeDialog();">Cancel</button>
+                    <input type="submit" value="Submit" id="submit">
+                    <button id="cancelBtn" onclick="closeDialog();">Cancel</button>
                 </form>
             </dialog>
         </div> 
     </header>
-    
-    <div id="output">
+    <!-- library is where DOM adds Book objects to -->
+    <div id="library">
         
     </div>
     <footer>
