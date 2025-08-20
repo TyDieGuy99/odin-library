@@ -1,6 +1,5 @@
 const dialog = document.getElementById("dialog");
 const backdrop = document.getElementById('dialogBackdrop');
-
 //if user presses ESQ or clicks outside of box close the dialog
 backdrop.addEventListener('click', function(e) {
     if (e.target === dialog) {
@@ -17,8 +16,12 @@ document.addEventListener('keydown', function(e) {
 //dialog related buttons
 const addBtn = document.getElementById('showDialog');
 const submitBtn = document.getElementById('submit');
+const xBtns = [document.getElementById('closeBtn'), document.getElementById('cancelBtn'), document.getElementById('dialogBackdrop')];
 addBtn.addEventListener('click', addBook);
 submitBtn.addEventListener('click', submitBook);
+for (let i = 0; i < xBtns.length; i++) {
+    xBtns[i].addEventListener('click', closeDialog);
+}
 
 //sort buttons
 const defaultSortBtn = document.getElementById('defaultSortBtn');
