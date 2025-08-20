@@ -210,14 +210,14 @@ function clearLabels() {
 }
 
 function updateDisplay() {
-    const outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = '';
+    const libraryDiv = document.getElementById('library');
+    libraryDiv.innerHTML = '';
 
     myLibrary.forEach(obj => {
         const bookContainer = document.createElement('div');
         bookContainer.id = obj.id;
         bookContainer.classList.add('book');
-        outputDiv.appendChild(bookContainer);
+        libraryDiv.appendChild(bookContainer);
 
         const titleBox = document.createElement('div');
         titleBox.className = 'titleBox';
