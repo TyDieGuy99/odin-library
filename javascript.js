@@ -5,10 +5,11 @@ const dialog = document.getElementById("dialog");
 const backdrop = document.getElementById('dialogBackdrop');
 
 //sort buttons
-
+const defaultSortBtn = document.getElementById('defaultSortBtn');
 const pageSortBtn = document.getElementById('pageSortBtn');
 const titleSortBtn = document.getElementById('titleSortBtn');
 const authorSortBtn = document.getElementById('authorSortBtn');
+defaultSortBtn.addEventListener('click', defaultSort);
 pageSortBtn.addEventListener('click', pageSort);
 titleSortBtn.addEventListener('click', titleSort);
 authorSortBtn.addEventListener('click', authorSort);
@@ -152,7 +153,7 @@ function authorSort() {
     updateDisplay();
 }
 
-function defaultOrder() {
+function defaultSort() {
     console.log('this is order of books by when they were added');
     myLibrary.sort(function(a, b){return a.order - b.order});
     updateDisplay();
