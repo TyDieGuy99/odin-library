@@ -1,9 +1,24 @@
 const dialog = document.getElementById("dialog");
 const backdrop = document.getElementById('dialogBackdrop');
 
+//if user presses ESQ or clicks outside of box close the dialog
+backdrop.addEventListener('click', function(e) {
+    if (e.target === dialog) {
+        closeDialog();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeDialog();
+    }
+});
+
 //dialog related buttons
 const addBtn = document.getElementById('showDialog');
 const submitBtn = document.getElementById('submit');
+addBtn.addEventListener('click', addBook);
+submitBtn.addEventListener('click', submitBook);
 
 //sort buttons
 const defaultSortBtn = document.getElementById('defaultSortBtn');
@@ -172,30 +187,18 @@ function defaultSort() {
     authorSortBtn.classList.remove('selectedSort');
 }
 
-addBtn.addEventListener('click', () => {
+function addBook() {
     dialog.showModal();
     backdrop.classList.add('open');
-});
-
-function closeDialog() {
-    backdrop.classList.remove('open');
-    document.getElementById('bookInfo').reset();
-    dialog.close();
 }
 
-backdrop.addEventListener('click', function(e) {
-    if (e.target === dialog) {
-        closeDialog();
-    }
-});
+function closeDialog() {
+    dialog.close();
+    backdrop.classList.remove('open');
+    document.getElementById('bookInfo').reset();
+}
 
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeDialog();
-    }
-});
-
-submitBtn.addEventListener('click', () => {
+function submitBook() {
     if (document.getElementById('title').value == "") {
         return false;
     } else if (document.getElementById('author').value == "") {
@@ -207,7 +210,7 @@ submitBtn.addEventListener('click', () => {
     console.log(myLibrary.length);
     updateDisplay();
     clearLabels();
-});
+}
 
 function updateDisplay() {
     const libraryDiv = document.getElementById('library');
