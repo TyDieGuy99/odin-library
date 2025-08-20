@@ -201,6 +201,7 @@ function defaultSort() {
     authorSortBtn.classList.remove('selectedSort');
 }
 
+//pulls up dialog to put in book info
 function addBook() {
     dialog.showModal();
     backdrop.classList.add('open');
@@ -212,6 +213,7 @@ function closeDialog() {
     document.getElementById('bookInfo').reset();
 }
 
+//puts book into the array, check for valid inputs
 function submitBook() {
     if (document.getElementById('title').value == "") {
         return false;
@@ -223,7 +225,7 @@ function submitBook() {
     addBook();
     console.log(myLibrary.length);
     updateDisplay();
-    clearLabels();
+    document.getElementById('bookInfo').reset();
 }
 
 function updateDisplay() {
