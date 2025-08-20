@@ -1,19 +1,25 @@
 const addBtn = document.getElementById('showDialog');
+const submitBtn = document.getElementById('submit');
+
 const dialog = document.getElementById("dialog");
-const submit = document.getElementById('submit');
 const backdrop = document.getElementById('dialogBackdrop');
+
+//sort buttons
 
 const pageSortBtn = document.getElementById('pageSortBtn');
 const titleSortBtn = document.getElementById('titleSortBtn');
 const authorSortBtn = document.getElementById('authorSortBtn');
-
-const myLibrary = [];
+pageSortBtn.addEventListener('click', pageSort);
+titleSortBtn.addEventListener('click', titleSort);
+authorSortBtn.addEventListener('click', authorSort);
 
 //true means its being sorted from least to most pages or from A-Z, false being most to least pages or Z-A
 let pageOrder = true;
 let titleOrder = true;
 let authorOrder = true;
-let order = 3; //adding book increases value by 1 before order++
+let order = 0; //adding book increases value by 1 before order++
+
+const myLibrary = [];
 
 function Book(title, author, pages, read, id, order) {
     this.title = title;
@@ -32,17 +38,34 @@ Book.prototype.readStatus = function() {
     }
 }
 
+//can be commented out if don't want manually added books
 window.onload = templateBooks();
-
 function templateBooks() {
-    console.log('function works');
-    const book1 = new Book('Lord of the Rings: The Fellowship of the Ring', 'J. R. R. Tolkein', 423, 'NEW', crypto.randomUUID(), 1);
+    const book1 = new Book('Lord of the Rings: The Fellowship of the Ring', 'J. R. R. Tolkein', 423, 'NEW', crypto.randomUUID(), order++);
     myLibrary.push(book1);
-    const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), 2);
+    const book2 = new Book('Dune', 'Frank Herbert', 412, 'NEW', crypto.randomUUID(), order++);
     myLibrary.push(book2);
-    const book3 = new Book('1984', 'George Orwell', 328, 'READ', crypto.randomUUID(), 3);
+    const book3 = new Book('1984', 'George Orwell', 328, 'READ', crypto.randomUUID(), order++);
     myLibrary.push(book3);
     updateDisplay();
+}
+
+//functions go below here
+function addBook() {
+    console.log("Book has been added");
+    title = document.getElementById('title').value;
+    author = document.getElementById('author').value;
+    pages = document.getElementById('pages').value;
+    if (document.getElementById('readStatus').checked) {
+        read = 'READ';
+    } else {
+        read = 'NEW';
+    }
+    id = crypto.randomUUID();
+    const book = new Book(title, author, pages, read, id, order++);
+    myLibrary.push(book);
+    closeDialog();
+    defaultOrder();
 }
 
 function pageSort() {
@@ -132,13 +155,16 @@ function authorSort() {
 function defaultOrder() {
     console.log('this is order of books by when they were added');
     myLibrary.sort(function(a, b){return a.order - b.order});
+    updateDisplay();
+
     pageOrder = true;
     titleOrder = true;
     authorOrder = true;
-    updateDisplay();
+
     pageSortBtn.textContent = 'Pages; Low to High';
     titleSortBtn.textContent = 'Title; (A-Z)';
     authorSortBtn.textContent = 'Author; (A-Z)';
+
     pageSortBtn.classList.remove('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
@@ -167,13 +193,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-pageSortBtn.addEventListener('click', pageSort);
-
-titleSortBtn.addEventListener('click', titleSort);
-
-authorSortBtn.addEventListener('click', authorSort);
-
-submit.addEventListener('click', () => {
+submitBtn.addEventListener('click', () => {
     if (document.getElementById('title').value == "") {
         return false;
     } else if (document.getElementById('author').value == "") {
@@ -187,24 +207,6 @@ submit.addEventListener('click', () => {
     clearLabels();
 });
 
-function addBook() {
-    console.log("Book has been added");
-    title = document.getElementById('title').value;
-    author = document.getElementById('author').value;
-    pages = document.getElementById('pages').value;
-    if (document.getElementById('readStatus').checked) {
-        read = 'READ';
-    } else {
-        read = 'NEW';
-    }
-    id = crypto.randomUUID();
-    order++;
-    const book = new Book(title, author, pages, read, id, order);
-    myLibrary.push(book);
-    closeDialog();
-    defaultOrder();
-}
-
 function clearLabels() {
     document.getElementById('bookInfo').reset();
 }
@@ -213,27 +215,30 @@ function updateDisplay() {
     const libraryDiv = document.getElementById('library');
     libraryDiv.innerHTML = '';
 
-    myLibrary.forEach(obj => {
+    myLibrary.forEach(addedBook => {
         const bookContainer = document.createElement('div');
-        bookContainer.id = obj.id;
+        bookContainer.id = addedBook.id;
         bookContainer.classList.add('book');
         libraryDiv.appendChild(bookContainer);
-
+        
         const titleBox = document.createElement('div');
         titleBox.className = 'titleBox';
-        
+
         const title= document.createElement('p');
         title.className = 'title';
 
         const author = document.createElement('p');
         author.className = 'author';
+
         const pages = document.createElement('p');
         pages.className = 'pages';
+
         const read = document.createElement('p');
         read.className = 'readStatus';
-        if (obj.read === 'READ') {
+        if (addedBook.read === 'READ') {
             read.classList.add('read');
         }
+
         const bookButtons = document.createElement('div');
         bookButtons.className = 'bookButtonsContainer';
 
@@ -243,21 +248,31 @@ function updateDisplay() {
         bookContainer.appendChild(pages);  
         bookContainer.appendChild(bookButtons);
 
+        titleBox.appendChild(title);
+        const titleBoxHeight = titleBox.offsetHeight;
+        const titleHeight = title.scrollHeight;
+        if (titleHeight > titleBoxHeight) {
+            const scrollDistance = titleBoxHeight - titleHeight;
+            bookContainer.style.setProperty('--title-scroll', `${scrollDistance}px`);
+        } else {
+            bookContainer.style.setProperty('--title-scroll', '0px');
+        }
+
         const buttonRead = document.createElement('button');
         buttonRead.className = 'bookBtn';
         const buttonDelete = document.createElement('button');
         buttonDelete.className = 'bookBtn';
         buttonDelete.id = 'deleteBtn';
 
-        title.textContent = obj.title;
-        author.textContent = 'By: ' + obj.author;
-        if (obj.pages > 1) {
-            pages.textContent = obj.pages + ' pages';
+        title.textContent = addedBook.title;
+        author.textContent = 'By: ' + addedBook.author;
+        if (addedBook.pages > 1) {
+            pages.textContent = addedBook.pages + ' pages';
         } else {
-            pages.textContent = obj.pages + ' page';
+            pages.textContent = addedBook.pages + ' page';
         }
         
-        read.textContent = obj.read;
+        read.textContent = addedBook.read;
         buttonRead.textContent = 'Read Status'
         buttonRead.onclick = function() {
             for (let i = 0; i < myLibrary.length; i++) {
@@ -283,16 +298,5 @@ function updateDisplay() {
 
         bookButtons.appendChild(buttonRead);
         bookButtons.appendChild(buttonDelete);
-
-        
-        titleBox.appendChild(title);
-        const titleBoxHeight = titleBox.offsetHeight;
-        const titleHeight = title.scrollHeight;
-        if (titleHeight > titleBoxHeight) {
-            const scrollDistance = titleBoxHeight - titleHeight;
-            bookContainer.style.setProperty('--title-scroll', `${scrollDistance}px`);
-        } else {
-            bookContainer.style.setProperty('--title-scroll', '0px');
-        }
     });
 }
