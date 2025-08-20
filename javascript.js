@@ -93,7 +93,10 @@ function pageSort() {
     pageSortBtn.classList.add('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
-    console.log(pageOrder);
+
+    titleSortBtn.textContent = 'Title; (A-Z)';
+    authorSortBtn.textContent = 'Author; (A-Z)';
+
     if (pageOrder == true) {
         pageSortBtn.textContent = 'Pages; Low to High';
         myLibrary.sort(function(a, b){
@@ -112,6 +115,10 @@ function titleSort() {
     titleSortBtn.classList.add('selectedSort');
     pageSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
+
+    pageSortBtn.textContent = 'Pages; Low to High';
+    authorSortBtn.textContent = 'Author; (A-Z)';
+
     myLibrary.sort(function(a, b){
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
@@ -144,6 +151,10 @@ function authorSort() {
     authorSortBtn.classList.add('selectedSort');
     pageSortBtn.classList.remove('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
+
+    pageSortBtn.textContent = 'Pages; Low to High';
+    titleSortBtn.textContent = 'Title; (A-Z)';
+
     myLibrary.sort(function(a, b){
         const authorA = a.author.toUpperCase();
         const authorB = b.author.toUpperCase();
