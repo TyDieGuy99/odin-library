@@ -201,7 +201,7 @@ dialog {
     color: var(--accent);
 }
 
-.closeBtn {
+#closeBtn {
     color: #9ca3af;
     background: transparent;
     border: none;
@@ -212,7 +212,7 @@ dialog {
     transition: all 0.3s;
 }
 
-.closeBtn:hover {
+#closeBtn:hover {
     color: var(--accent);
     background-color: rgba(192, 192, 192, 0.1);
 }
