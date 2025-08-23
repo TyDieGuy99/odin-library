@@ -72,7 +72,7 @@ function templateBooks() {
 }
 
 //functions go below here
-function addBook() {
+function addBookToArray() {
     console.log("Book has been added");
     title = document.getElementById('title').value;
     author = document.getElementById('author').value;
@@ -85,8 +85,6 @@ function addBook() {
     id = crypto.randomUUID();
     const book = new Book(title, author, pages, read, id, order++);
     myLibrary.push(book);
-    closeDialog();
-    defaultOrder();
 }
 
 function pageSort() {
@@ -223,10 +221,12 @@ function submitBook() {
     } else if (document.getElementById('pages').value == "" || document.getElementById('pages').value < 1 || document.getElementById('pages').value > 150000) {
         return false;
     }
-    addBook();
+    addBookToArray();
     console.log(myLibrary.length);
     updateDisplay();
     document.getElementById('bookInfo').reset();
+    closeDialog();
+    defaultOrder();
 }
 
 function updateDisplay() {
