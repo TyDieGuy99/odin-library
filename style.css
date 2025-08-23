@@ -288,7 +288,7 @@ button:focus,
 #library {
     margin: 15px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1.5fr));
+    grid-template-columns: repeat(auto-fill, 300px);
     gap: 1em;
     flex-grow: 1;
     align-content: flex-start;
