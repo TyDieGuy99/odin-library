@@ -266,16 +266,6 @@ function updateDisplay() {
         bookContainer.appendChild(pages);  
         bookContainer.appendChild(bookButtons);
 
-        titleBox.appendChild(title);
-        const titleBoxHeight = titleBox.offsetHeight;
-        const titleHeight = title.scrollHeight;
-        if (titleHeight > titleBoxHeight) {
-            const scrollDistance = titleBoxHeight - titleHeight;
-            bookContainer.style.setProperty('--title-scroll', `${scrollDistance}px`);
-        } else {
-            bookContainer.style.setProperty('--title-scroll', '0px');
-        }
-
         const buttonRead = document.createElement('button');
         buttonRead.className = 'bookBtn';
         const buttonDelete = document.createElement('button');
@@ -316,5 +306,15 @@ function updateDisplay() {
 
         bookButtons.appendChild(buttonRead);
         bookButtons.appendChild(buttonDelete);
+
+        titleBox.appendChild(title);
+        const titleBoxHeight = titleBox.offsetHeight;
+        const titleHeight = title.scrollHeight;
+        if (titleHeight > titleBoxHeight) {
+            const scrollDistance = titleBoxHeight - titleHeight;
+            bookContainer.style.setProperty('--title-scroll', `${scrollDistance}px`);
+        } else {
+            bookContainer.style.setProperty('--title-scroll', '0px');
+        }
     });
 }
