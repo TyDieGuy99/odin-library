@@ -9,8 +9,12 @@
 
     --book--primary: #1e1b4b;
     --accent: #c0c0c0;
+    
     --button: #8b5cf6;
     --button-hover: #7c3aed;
+    --buttonBorder-hover: #ccbaf8;
+
+    --headings: #e0e0e0;
 
 }
 
@@ -26,7 +30,7 @@
 
 body {
     background-color: var(--bg-primary);
-    color: var(--accent);
+    color: var(--headings);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -121,7 +125,7 @@ dialog {
 .headerLeft {
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: 2em;read
     align-items: center;
     padding: 2em;
 }
@@ -149,7 +153,8 @@ dialog {
 }
 
 .selectedSort { /* applied through DOM */
-    border: 1px solid var(--accent);
+    border: 1px solid var(--buttonBorder-hover);
+    background-color: var(--button-hover);
 }
 
 /* within footer */
@@ -204,7 +209,7 @@ dialog {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--accent);
+    color: var(--headings);
 }
 
 #closeBtn {
@@ -274,26 +279,10 @@ button,
     transition: all 0.3s;
 }
 
-button:hover,
-.bookBtn:hover,
-button:focus,
-#submit:hover,
-#submit:focus {
-    background-color: var(--button-hover);
-    box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3);
-    transition: all 0.3s;
-}
-
 #cancelBtn {
     background-color: transparent;
     border: 1px solid var(--input-border);
     font-size: 1rem;
-}
-
-#cancelBtn:hover,
-#deleteBtn:hover {
-    background-color: rgba(192, 192, 192, 0.1);
-    border-color: var(--accent);
 }
 
 /* main content */
@@ -341,9 +330,9 @@ button:focus,
 
 .read {
     transition: 0.5s ease;
-    border: 3px solid var(--button);
-    background-color: var(--button);
-    color: var(--label-text);
+    border: 3px solid var(--accent);
+    background-color: var(--accent);
+    color: var(--bg-primary);
 }
 
 .titleBox {
@@ -402,6 +391,31 @@ button:focus,
     border: 2px solid var(--button-hover);
     transform: translateY(-10px);
 }
+
+/* hover states for multiple buttons */
+
+button:hover,
+#submit:hover {
+    border: 1px solid var(--buttonBorder-hover);
+}
+
+#cancelBtn:hover,
+#deleteBtn:hover {
+    background-color: rgba(192, 192, 192, 0.1);
+    border-color: var(--accent);
+}
+
+button:hover,
+.bookBtn:hover,
+button:focus,
+#submit:hover,
+#submit:focus {
+    background-color: var(--button-hover);
+    box-shadow: 0 3px 8px rgba(139, 92, 246, 0.3);
+    transition: all 0.3s;
+}
+
+/* all different screensize changes */
 
 @media screen and (max-width: 1120px) {
     header {
