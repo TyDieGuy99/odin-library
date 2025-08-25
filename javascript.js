@@ -93,6 +93,9 @@ function pageSort() {
     titleSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
 
+    titleOrder = true;
+    authorOrder = true;
+
     titleSortBtn.textContent = 'Title; (A-Z)';
     authorSortBtn.textContent = 'Author; (A-Z)';
 
@@ -114,6 +117,9 @@ function titleSort() {
     titleSortBtn.classList.add('selectedSort');
     pageSortBtn.classList.remove('selectedSort');
     authorSortBtn.classList.remove('selectedSort');
+
+    pageOrder = true;
+    authorOrder = true;
 
     pageSortBtn.textContent = 'Pages; Low to High';
     authorSortBtn.textContent = 'Author; (A-Z)';
@@ -150,6 +156,9 @@ function authorSort() {
     authorSortBtn.classList.add('selectedSort');
     pageSortBtn.classList.remove('selectedSort');
     titleSortBtn.classList.remove('selectedSort');
+
+    pageOrder = true;
+    titleOrder = true;
 
     pageSortBtn.textContent = 'Pages; Low to High';
     titleSortBtn.textContent = 'Title; (A-Z)';
