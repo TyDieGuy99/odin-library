@@ -125,7 +125,7 @@ dialog {
 .headerLeft {
     display: flex;
     flex-direction: row;
-    gap: 2em;read
+    gap: 2em;
     align-items: center;
     padding: 2em;
 }
