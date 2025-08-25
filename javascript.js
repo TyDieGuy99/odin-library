@@ -242,7 +242,9 @@ function updateDisplay() {
     const libraryDiv = document.getElementById('library');
     libraryDiv.innerHTML = '';
 
-    myLibrary.forEach(addedBook => {
+    const displayArray = myLibrary.reverse();
+
+    displayArray.forEach(addedBook => {
         const bookContainer = document.createElement('div');
         bookContainer.id = addedBook.id;
         bookContainer.classList.add('book');
