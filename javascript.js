@@ -226,7 +226,7 @@ function submitBook() {
     updateDisplay();
     document.getElementById('bookInfo').reset();
     closeDialog();
-    defaultOrder();
+    defaultSort();
 }
 
 function updateDisplay() {
